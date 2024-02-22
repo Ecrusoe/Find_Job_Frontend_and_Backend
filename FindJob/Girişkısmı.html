@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="Girişkısmı.css">
+    <title>Giriş Sayfası </title>
+    <!-- Bu kısmı sayfanızın <head> bölümüne ekleyin -->
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="sign-upForm" onsubmit="redirectToNextPage(event)" >
+                <h1>Hesabınızı Oluşturun</h1>
+
+               
+                <input type="text" placeholder="İsim" required>
+                <input type="email" placeholder="Email" required>
+
+          
+
+            
+                <label class="userTypeForm">
+                    <input type="checkbox"    name="userType" value="student" onclick="checkSelection()"> Öğrenci 
+                 
+                    <input type="checkbox"  name="userType" value="employer" onclick="checkSelection()"> İşveren   
+                </label>
+          
+                
+        
+                <button type="button" onclick="proceed()">Devam Et</button>
+                
+                
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Giriş Yap</h1>
+              
+                <span>e-posta şifrenizi kullanın</span>
+                <input type="email" id="emailid" placeholder="Email" required>
+                <input type="password"  id="password_id" placeholder="Şifre" required>
+                <a href="şifremiunuttun.html">Şifrenizi mi unuttunuz?</a>
+                <button id="loginButton" type="submit">GİRİŞ YAP</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Yeniden Hoşgeldiniz</h1>
+                    <p>Tüm site özelliklerini kullanmak için kişisel bilgilerinizi girin</p>
+                    <button class="hidden" id="loginButton">GİRİŞ YAP</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>MERHABA DOSTUM</h1>
+                    <p>Tüm site özelliklerini kullanmak için kişisel bilgilerinizle kaydolun</p>
+                    <button  class="hidden"  id="register">KAYIT OL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Girişkısmı.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOU4S4iwyDxFeN9qdraALi0wrDnXis068",
+            authDomain: "stajbul-a2b60.firebaseapp.com",
+            projectId: "stajbul-a2b60",
+            storageBucket: "stajbul-a2b60.appspot.com",
+            messagingSenderId: "509329699876",
+            appId: "1:509329699876:web:060dbf61b29cacaa9114b1"
+        };
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        const LoginButton = document.getElementById("loginButton");
+
+        LoginButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var eMailInp = document.getElementById("emailid").value
+            var passwordInp = document.getElementById("password_id").value;
+
+            // Firebase Authentication ile üye girişi yapma
+            signInWithEmailAndPassword(auth, eMailInp, passwordInp)
+                .then((userCredential) => {
+                    // Giriş başarılıysa
+                    const user = userCredential.user;
+                    const dt = new Date();
+                    const formattedDate = dt.toISOString(); // Tarihi bir dizeye çevir
+
+                    update(ref(database, 'users/' + user.uid), {
+                        last_login: formattedDate
+                    })
+                        .then(() => {
+                            alert("Kullanıcı başarıyla giriş yaptı.");
+                            window.location.href = "anasayfa.html";
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        })
+                })
+                .catch((error) => {
+                    // Giriş başarısızsa
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+    </script>
+
+  
+</body>
+</html>

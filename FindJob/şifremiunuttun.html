@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Formu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #512da8;
+            background: linear-gradient(to right, #512da8, #fff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+
+
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            background-color: #eee;
+            border: none;
+            margin: 8px 0;
+            padding: 10px 2px;
+            font-size: 13px;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+        }
+
+        button {
+            background-color: #512da8;
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 45px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #bio{
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="registrationForm">
+
+        <h1>Yeni Şİfre</h1>
+
+        <span>İlgili yerleri lütfen eksiksiz doldurun.</span>
+        <input type="text" id="firstName" placeholder="İsim">
+        <input type="text" id="lastName" placeholder="Soyisim">
+      
+        <input type="email" id="emailid" placeholder="Email">
+      
+      
+        <input type="password" id="new_password_id" placeholder=" Yeni Şifrenizi Belirleyiniz">
+        <input type="password" id="new_password_id_again" placeholder="Yeni Şİfrenizi Birdaha Yazınız">
+        
+        <button type="submit" id="new_RegisterButton">İşlemi Bitir</button>
+    </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOU4S4iwyDxFeN9qdraALi0wrDnXis068",
+            authDomain: "stajbul-a2b60.firebaseapp.com",
+            projectId: "stajbul-a2b60",
+            storageBucket: "stajbul-a2b60.appspot.com",
+            messagingSenderId: "509329699876",
+            appId: "1:509329699876:web:060dbf61b29cacaa9114b1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+
+        const RegisterButton = document.getElementById("RegisterButton");
+
+        RegisterButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Formun default davranışını engelle
+
+            var nameInp = document.getElementById("firstName").value;
+            var lastnameInp = document.getElementById("lastName").value;
+          
+            var eMailInp = document.getElementById("emailid").value
+            
+          
+            var newpasswordInp = document.getElementById("new_password_id").value;
+            var newpasswordInp2 = document.getElementById("new_password_id_again").value;
+         
+
+            createUserWithEmailAndPassword(auth, eMailInp, passwordInp)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    set(ref(database, 'users/' + user.uid), {
+                        nameInp: nameInp,
+                        lastnameInp: lastnameInp,
+                    
+                        eMailInp: eMailInp,
+                        
+                        passwordInp: passwordInp,
+                        passwordInp2: passwordInp2,
+                       
+                    })
+                        .then(() => {
+                            alert("Kullanıcı başarıyla kayıt oldu.");
+                            window.location.href = "Girişkısmı.html";
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        })
+
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+        );
+    </script>
+
+</body>
+
+</html>

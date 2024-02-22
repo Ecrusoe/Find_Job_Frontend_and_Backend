@@ -1,0 +1,358 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    margin: 0;
+}
+
+#menu{
+    height: 80px;
+    background-color: #512da8;
+    background: linear-gradient(to right, #512da8, #fff);
+    padding: 0 20px;
+   
+ 
+}
+#logo{
+    font-size: 30px;
+    line-height: 80px;
+    color: #fff;
+    float: left;
+    
+}
+nav{
+    float: right;
+    line-height: 80px;
+   
+}
+nav a:link{
+    text-decoration: none;
+    margin-right: 25px;
+    color:blueviolet;   
+}
+nav a:hover{
+    border-bottom: 2px solid;
+   color:  #8a2be2;
+}
+nav a:visited{
+    text-decoration: none;
+    margin-right: 25px;
+    color:blueviolet;   
+}
+.ikon{
+    margin-right: 7px;
+    font: size 16px;;
+}
+#anasayfa{
+
+height:600px;
+background-image: url(/img/Business_with_ESA_pillars.jpg);
+background-size:cover;
+background-position: center;
+background-attachment: fixed;
+
+}
+#black{
+    height: 600px;
+    background-color: 255,255,255,0.2;
+    opacity: 0.5;
+}
+#icerik{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform:translate(-50%,-50%);
+    color: white;
+    font-size: 20px;
+}
+.arama-kutusu{
+position: absolute;
+top: 200px;
+left:40%px;
+transform: (-50%,-50%);
+background-color:whitesmoke;
+height: 40px;
+border-radius: 40px;
+padding: 10px;
+width: auto;
+display: flex;
+align-items: center;
+}
+
+.arama-kutusu a{
+    color:  #8a2be2;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 120%;
+
+    
+
+}
+.arama-kutusu input{
+    border: none;
+    background: none;
+    outline: none;
+    color: black;
+    font-size: 120%;
+    padding: 0;
+  
+
+
+}
+#hakkimizda{
+    background-color: #512da8;
+    background: linear-gradient(to right, #512da8, #fff);
+    padding: 50px;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+#hakkimizda-baslik{
+    font-size: 55px;
+    color:whitesmoke;
+    
+    font-weight: 600;
+}
+.container{
+    width: 96%;
+    max-width: 1200px;
+    height: auto;
+    margin: auto;
+
+}
+#solkisim{
+    float: left;
+    border-right:3px solid whitesmoke;
+    font-size: 30px;
+    width: 400px;
+    color: whitesmoke;
+
+}
+#h5sol{
+ line-height: 1.6;
+ font-size: 22px;
+ font-weight: 600;
+}
+#h5sol,#sagkisim{
+margin: 0;
+padding: 0;
+margin-top: 20px;
+}
+#spanL{
+    font-size: 50px;
+    margin-right: 7px;
+    line-height: 42px;
+    color: whitesmoke;
+    font-weight: 600;
+    float: left;
+
+}
+#sagkisim{
+    float: right;
+    width: 750px;
+    color: whitesmoke;
+    text-align: left;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 100;
+}
+.img-fluid{
+    width: 750px;
+   max-height: fit-content;   
+margin-top: 75px;
+
+}
+.resimduzen{
+    width: 1200px;
+    height: 550px;
+}
+
+#pson{
+    color:whitesmoke;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 20px;
+    font-weight: 100;
+}
+#ilanlar{
+    background-color: #512da8;
+    background: linear-gradient(to right, #512da8, #fff);
+    padding: 50px;
+    text-align: center;
+    height: 700px;
+
+}
+
+.kartresim{
+width: 315px;
+height: 200px;
+
+}
+.kart{
+    background-color: #fff;
+    width: 320px;
+    height: 350px;
+    border: 1px solid #fff;
+    padding: 0;
+    display: inline-block;
+
+
+}
+.baslikkart{
+    font-size: 15px;
+    color: #003666;
+
+
+}
+.kartp{
+  color:#888;
+
+}
+.kart:hover{
+    border: 2px solid rgb(150, 0, 250);
+
+}
+#profiller{
+    font-size: 55px;
+    color:whitesmoke;
+    
+    font-weight: 600;
+}
+#h3_iletisim{
+    font-size: 55px;
+    color: #512da8;
+    
+    font-weight: 600;
+}
+#is-ilanlari{
+    background-color: #512da8;
+    background: linear-gradient(to right, #512da8, #fff);
+    padding: 50px;
+    text-align: center;
+    height: 700px;
+}
+#is-profiller{
+    font-size: 55px;
+    color:whitesmoke;
+    
+    font-weight: 600;
+}
+#iletisim{
+background: url(img/78_26139.jpg);
+background-size: cover;
+padding: 50px;
+height: auto;
+text-align:center;
+}
+#iletisim_opak{
+    background-color: 255,255,255,0.2;
+    padding: 30px 20px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    height: 550px;
+
+}
+#form_grubu{
+    width: 700px;
+    float: left;
+    height: 500px;
+    text-align:left;
+
+}
+#sol_form{
+    width: 50%;
+    float: left;
+    padding-right: 5px;
+
+}
+#sag_form{
+    width: 50%;
+    float: right;
+    padding-left: 5px;
+
+}
+.form_control{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+
+}
+textarea{
+    font-family: Arial;
+}
+input[type="submit"]{
+    cursor: pointer;
+    background-color:whitesmoke;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+    color: #512da8;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+#copyright{
+    margin-top: 10px;
+    color: rgb(5, 11, 54);
+    font-size: 20px;
+    letter-spacing: 2px;
+
+}
+#up{
+    margin-top: 15px;
+    color: rgb(5, 11, 54);
+    border: 1px solid #512da8;
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 8px 12px;
+
+}
+.text-area{
+    font-size: medium;
+    width: 700px;
+    resize: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    #logo {
+      font-size: 24px;
+    }
+  
+    nav {
+      float: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+  
+    nav a {
+      margin-right: 0;
+      margin-bottom: 10px;
+      display: block;
+    }
+  
+    .ikon {
+      margin-right: 0;
+    }
+  }
+  
+  /* Add more media queries as needed for different screen sizes */
+  

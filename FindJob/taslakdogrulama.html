@@ -1,0 +1,78 @@
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAriMIe1AwyethfXRjra_Rrna68DXYH3Oc",
+        authDomain: "auth-b9ba9.firebaseapp.com",
+        projectId: "auth-b9ba9",
+        storageBucket: "auth-b9ba9.appspot.com",
+        messagingSenderId: "463113484478",
+        appId: "1:463113484478:web:ec4089f598083d13fb86ef"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+
+    const RegisterButton = document.getElementById("RegisterButton");
+
+    RegisterButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Formun default davranışını engelle
+
+        var eMailInp = document.getElementById("emailid").value;
+        var passwordInp = document.getElementById("password_id").value;
+        var nameInp = document.getElementById("nameid").value;
+        var phoneInp = document.getElementById("numberid").value;
+        var dateInp = document.getElementById("dateid").value;
+        var genderInp = document.getElementById("check-male").value;
+
+
+        let gucluSifre = GucluSifre(passwordInp);
+        var genderInp;
+        var maleRadioButton = document.getElementById("check-male");
+        if (maleRadioButton.checked) {
+            genderInp = "Erkek";
+        } else {
+            genderInp = "Kadın";
+        }
+        if (!validateEmail(eMailInp)) {
+            alert("Lütfen geçerli bir e-posta giriniz.");
+        } else if (gucluSifre <= 2) {
+            alert("Şifre zayıf, lütfen daha güçlü bir şifre kullanın.");
+        } else if (gucluSifre >= 2 && gucluSifre <= 4) {
+            alert("Şifre orta, lütfen daha güçlü bir şifre kullanın.");
+        } else {
+            createUserWithEmailAndPassword(auth, eMailInp, passwordInp)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    set(ref(database, 'users/' + user.uid), {
+                        nameInp: nameInp,
+                        eMailInp: eMailInp,
+                        passwordInp: passwordInp,
+                        phoneInp: phoneInp,
+                        dateInp: dateInp,
+                        genderInp: genderInp
+                    })
+                        .then(() => {
+                            alert("Kullanıcı başarıyla kayıt oldu.");
+                            window.location.href = "../LoginPage/login.html";
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        })
+
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+    });
+</script>
